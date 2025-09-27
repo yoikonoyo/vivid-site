@@ -1,0 +1,435 @@
+@charset "UTF-8";
+
+/*共通部分*/
+html{
+    font-size: 100%;
+}
+
+/* ヘッダー全体を固定 */
+.site-header {
+  position: fixed; /*横並びにする*/
+  display: flex;/*←←←これがないと以下の2つが効かない！*/
+  justify-content: space-between;/* 左右に要素を配置 */
+  align-items: center;/*垂直方向中央*/
+  padding: 20px;
+  background-color: #f5f5dc;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* ヘッダー内の横並び */
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 10px 20px;
+}
+
+/* サイトタイトル部分（ロゴ＋テキスト） */
+.site-title {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+}
+/* ロゴ画像とサイト名を横並びに */
+.logo-area {
+  display: flex;
+  align-items: center;
+}
+
+.logo-area img {
+  height: 60px;
+  margin-right: 10px;
+}
+
+.site-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2d2d2d;
+}
+
+.site-title img {
+  height: 50px;
+  width: auto;
+  margin-right: 10px;
+}
+
+/* ナビゲーションメニュー */
+.nav-list {
+  display: flex;
+  gap: 1.5rem; /*li要素の間隔を設定しておく*/
+  list-style: none;/*リストアイテムの先頭に表示されるリストマーカーの種類、位置、画像についての指示、noneは,（黒丸や数字など）を付けない指示*/
+  margin: 0;
+  padding: 0;
+}
+.nav li {
+  margin-left: 30px;
+}
+.nav-list a {
+  text-decoration: none; /*下線や上線についての指示。noneは取り消し線などの装飾を非表示にする*/
+  color: #333;
+  font-weight: bold;
+  padding: 8px 0;
+  position: relative;
+  transition: color 0.3s ease;  /*テキストp198*/
+}
+/* ホバー時の色変化 */
+.nav-list a:hover {
+  color: #32CD32; 
+}
+/* ヘッダー下にコンテンツが隠れないよう余白追加 */
+body {
+  margin: 0; /*余白を消す*/
+  /*padding-top: 80px;  headerの高さに合わせて調整 */
+  font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "BIZ UDPGothic", sans-serif; /*P185P185*/
+}
+.wrapper {  /*画面が大きいマックなどでも中間が間延びしないで一定の幅で見れるようにするために必ず入れる*/
+  max-width: 1100px; /*サイト全体の最大幅*/
+  margin: 0 auto;    /*中央寄せ*/
+}
+/* Heroセクション全体の背景や中央揃えなど */
+.hero {
+  background-image: url(../images/new_home_pc.png); /* style.cssから見た相対パスなので1つ上の階層にある！ */
+  background-size: cover;        /* 画像を全体に広げる */
+  background-position: center;   /* 画像の中心を表示 */
+  background-repeat: no-repeat;  /* 繰り返さない */
+  background-origin: content-box;/* 画面が大きくなってもイラストが途切れない*/
+  height: 100vh;                 /* 表示画面いっぱいの高さ */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;  /*p159 （上部）の開始位置からスタート*/
+  align-items: flex-start;     /* 子要素の全体的な並びを左側にそろえる */
+  color: rgb(65, 9, 9);
+  text-align: left;           /* テキスト（文字）の行揃えを左へ*/
+  /*margin: 2rem;  取った理由： 大きい画面になると画像下が途切れる！！！*/
+}
+/* Hero内の文字・ボタンの配置 */
+.hero-content,.btn {
+  margin-top: 9rem;
+  margin-left: 3rem;
+}
+.hero-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  line-height: 1.8;
+  word-break: keep-all; /*←←←New 変に改行させない*/
+}
+/* ボタンの見た目 */
+.btn {
+  background-color: #c2f4a2;   /*ボタンの背景色*/
+  color: #333;
+  padding: 0.8rem 1.5rem;
+  border-radius: 30px;           /*ボタンの角を丸くする*/
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease; /*0.3秒かけて変化 easeはデフォルトの動き*/
+}
+
+.btn:hover {
+  background-color: #94cd32;   /* ホバー時の色 */
+}
+
+/*Conceptセクション*/
+#to-concept {
+  scroll-margin-top: 150px;  /* ← headerの高さと同じに調整（例：固定ヘッダーが100px＋padding20pxなので） */
+}
+.concept {
+  padding: 2rem 1rem; /* 画面が小さくなった時用対策 */
+  background-color: #f5f5dc;
+  background-size: cover;
+  display: flex;           /* 子要素を中央揃えにする準備 */
+  flex-direction: column; /*←←←これを追加*/
+  align-items: center;   /* 上下中央に */
+  justify-content: center; /*左右中央に */
+  text-align: center;  /* テキストを中央揃えに */
+  color: rgb(65, 9, 9);
+}
+.concept-content {
+  max-width: 800px;  /* テキストの広がりを防ぐ */
+  width: 100%;
+  padding: 2rem 1rem;
+}
+.concept-title h3 {
+  font-size: 1.8rem;
+  line-height: 1.2;
+}
+.concept-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+.concept-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  line-height: 1.8; /*fontに対して1.4倍の高さの行間ができる */
+  word-break: keep-all; /*単語の途中で無理に改行しない*/
+  }
+
+  /*メニュー！*/
+/* メニューセクションにスクロールで飛ぶとき、固定ヘッダーの下にきれいに見えるよう調整 */
+/* 旧方式（padding-top & margin-top）は使わず、scroll-margin-top を使用 */
+#to-menu {
+  scroll-margin-top: 150px;  /* ← headerの高さと同じに調整（例：固定ヘッダーが100px＋padding20pxなので） */
+}
+.menu {
+  font-size: 2.0rem;
+  color: #560606;
+  margin: 4rem;
+}
+.menu-title {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+.menu-title p {
+  font-size:1.2rem;
+ }
+
+.menu-container {   /*テキスト156*/
+  display: flex;
+  flex-wrap: wrap;   /*折り返して下へ*/
+  gap: 2.5rem;               /* 間隔 */
+  justify-content: center;  /* 中央寄せ */
+}
+.menu-item {
+  flex: 1 1 30%;   /* 画面に応じて3列ベースに並ぶ */
+  min-width: 200px;   /* 小さくなりすぎ防止 */
+  text-align: center;
+  font-size: 1rem;
+}
+.menu-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  transition: filter 0.3s ease; /* アニメーションの追加 */
+}
+.menu-item img:hover {
+  filter: brightness(1.2);   /*明るくする効果 */
+}
+
+/* ABOUTセクション */
+#to-about {
+  scroll-margin-top: 150px;  /* ← headerの高さと同じに調整（例：固定ヘッダーが150px） */
+}
+.about {
+  padding: 3rem 1rem;
+  background-color: #f9f9f9;
+  color: #560606;
+  margin: 4rem auto;
+  max-width: 1000px;
+  font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "BIZ UDPGothic", sans-serif;
+}
+
+/* タイトル部分 */
+.about-title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.about-title h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+.about-title p {
+  font-size: 1.2rem;
+  line-height: 1.0;
+  margin-bottom: 0.5rem;
+  word-break: normal;     /* 改行を許可 */
+  white-space: normal;    /*←改行を許可 */
+  text-align: center;     /*中央揃えはお好みで */
+}
+
+/* 店舗紹介（Flexで横並び） */
+/* 子要素（.about-item, .common-info, .shop）を横並びにする！ */
+.about-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+/* 店舗ブロック */
+.about-item {
+  text-align: center;
+  max-width: 250px;
+  font-size: 1rem;
+}
+.about-item h3 {
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.0;
+  font-weight: normal;
+  color: #333;
+}
+
+/* 画像装飾 */
+.about-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 共通情報ブロック */
+.common-info {
+  max-width: 600px;
+  margin: 2rem auto 0 auto;
+  text-align: center;
+  font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  font-size: 1rem;
+  color: #333;
+}
+.common-info p {
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+/* 共通・店舗セクション共通のh4 */
+.common-info h4,
+.shop h4 {
+  color: #560606;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+/* 店舗情報ブロック */
+.shop {
+  max-width: 600px;
+  margin: 2rem auto 0 auto;
+  text-align: left;
+  font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  font-size: 1rem;
+  color: #333;
+}
+.shop p {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.3rem;
+  white-space: nowrap;
+  align-items: flex-start; /* 上端揃え（任意） */
+}
+
+
+/* フッター全体 */
+footer {
+  background-color: #653232; 
+  color: #f5f5dc; 
+  padding: 1.5rem 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+  line-height: 2;
+}
+
+/* フッター内のリンク */
+.footer-nav a {
+  color: #c2f4a2;  /* ボタンの背景色に近い緑系 */
+  text-decoration: none;
+  margin: 0 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.footer-nav a:hover {
+  color: #94cd32;
+}
+
+/*@mediaで画面が800px＝スマホ画面になったら以下に切り替える指示を出す*/
+@media  (max-width: 800px) {
+  .site-header {
+    flex-direction: column;   /*スマホになったら縦に並ぶ*/
+    align-items: flex-start;  /*左寄せ*/
+    /*padding: 10px;*/
+    padding-left: 2rem; /* ← この行を追加で、全体を少し右に寄せる */
+  }
+
+  .site-header nav {
+    display: flex;   /*navをflexboxとして扱う*/
+    flex-direction: column;  /*navが縦に並ぶ*/
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .nav-list {
+    flex-direction: column;
+    padding: 5px 0;
+  }
+  .hero {
+  background-image: url(../images/new_home_sp.png);  /* ← これは必須！ */
+  background-size: cover;
+  background-position: center;  /* ← 画像は中央のまま動かさない */
+  min-height: 100vh;   /* 画面全体に広がるように */
+  display: flex;
+  align-items: center;
+  justify-content: center;   /* flex-startでもOKか？ */
+  position: relative;
+  padding: 1rem;
+}
+.hero-content {
+  margin-top: -4rem;     /* この1行で上に移動（検証画面でこれ以上は小さいスマホがダメだった） */
+  margin-left: 0;  /*.hero-content, .btnにmargin-left: 3rem;があるので*/
+  text-align: center;
+  padding: 0 1rem;
+  width: 90%;
+  z-index: 1;    /* 重なり指示のプロパティ。念のため前面に出しておく */
+  border: 1px dashed transparent;
+}
+  .hero-content h2 {
+    font-size: 1.2rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  .btn {
+    margin-top: 1rem;
+    margin-left: 0;
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+  }
+  .concept-content h2{
+    font-size: 1.6rem;
+  }
+  .concept-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  /*Aboutセクション*/
+  .about-container {
+    flex-direction: column; /* 縦並びに切り替え */
+    align-items: center; /* 各ブロックを中央揃えに */
+  }
+
+  .about-item, .common-1, .shop {
+    max-width: 90%;
+    text-align: center;
+  }
+  .common-1, .shop {
+    text-align: left; /* 内容が多いので左揃えに戻すと見やすい */
+  }
+  #to-concept {
+  scroll-margin-top: 230px;  /* ← headerの高さと同じに調整（例：固定ヘッダーが100px＋padding20pxなので） */
+  }
+  #to-menu {
+  scroll-margin-top: 230px;  /* ← headerの高さと同じに調整（例：固定ヘッダーが100px＋padding20pxなので） */
+  }
+  #to-about {
+  scroll-margin-top: 230px;  /* ← headerの高さと同じに調整（例：固定ヘッダーが150px） */
+  }
+
+ }
+
+
